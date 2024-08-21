@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv5cwllxuqpl0"]
+
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_c6j2g"]
+[ext_resource type="Theme" uid="uid://oy1t8oryeskt" path="res://resouces/themes/main_menu/main_menu_theme.tres" id="1_m7p3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em1xx"]
+bg_color = Color(0.2484, 0.2484, 0.2484, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="pause_menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_c6j2g")
+
+[node name="pause" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 93.0
+grow_horizontal = 0
+theme = ExtResource("1_m7p3c")
+text = "وقّف"
+
+[node name="pause_hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="backdrop" type="ColorRect" parent="pause_hud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.34902)
+
+[node name="Panel" type="Panel" parent="pause_hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -210.0
+offset_right = 328.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_em1xx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_hud/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="pause_hud/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_m7p3c")
+theme_type_variation = &"HeaderLarge"
+text = "اللّعب واقف"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pause_hud/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="continue" type="Button" parent="pause_hud/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_m7p3c")
+text = "كمَل"
+
+[node name="exit" type="Button" parent="pause_hud/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_m7p3c")
+theme_type_variation = &"DestructiveButton"
+text = "أطلع"
+
+[connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="pause_hud/Panel/VBoxContainer/HBoxContainer/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="pause_hud/Panel/VBoxContainer/HBoxContainer/exit" to="." method="_on_exit_pressed"]

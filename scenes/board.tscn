@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2durggeaiehm"]
+
+[ext_resource type="Script" path="res://scripts/dealer.gd" id="1_u461c"]
+[ext_resource type="Script" path="res://scripts/deck.gd" id="2_bpcrb"]
+[ext_resource type="Script" path="res://scripts/Player.gd" id="2_u0yt5"]
+[ext_resource type="Script" path="res://scripts/hand.gd" id="3_we7et"]
+[ext_resource type="Script" path="res://scripts/controller.gd" id="4_ksy5j"]
+[ext_resource type="Script" path="res://scripts/bot.gd" id="5_xk51m"]
+[ext_resource type="Script" path="res://scripts/pile.gd" id="6_bv1hm"]
+[ext_resource type="PackedScene" uid="uid://dv5cwllxuqpl0" path="res://scenes/pause_menu.tscn" id="8_ytwak"]
+
+[node name="Board" type="Node2D" node_paths=PackedStringArray("deck", "pile", "players")]
+script = ExtResource("1_u461c")
+deck = NodePath("Deck")
+pile = NodePath("Pile")
+players = [NodePath("Player"), NodePath("Player2")]
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2(360, 1280)
+script = ExtResource("2_u0yt5")
+
+[node name="Hand" type="Node2D" parent="Player"]
+z_index = 2
+script = ExtResource("3_we7et")
+
+[node name="Controller" type="Node" parent="Player"]
+script = ExtResource("4_ksy5j")
+
+[node name="Player2" type="Node2D" parent="."]
+position = Vector2(360, 0)
+script = ExtResource("2_u0yt5")
+
+[node name="Bot" type="Node" parent="Player2"]
+script = ExtResource("5_xk51m")
+
+[node name="Deck" type="Node2D" parent="."]
+position = Vector2(-360, 640)
+script = ExtResource("2_bpcrb")
+
+[node name="Pile" type="Node2D" parent="."]
+position = Vector2(360, 640)
+script = ExtResource("6_bv1hm")
+size = Vector2(590, 790)
+
+[node name="pause_menu" parent="." instance=ExtResource("8_ytwak")]

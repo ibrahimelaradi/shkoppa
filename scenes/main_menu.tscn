@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://f82f1fiwp1c7"]
+
+[ext_resource type="Theme" uid="uid://oy1t8oryeskt" path="res://resouces/themes/main_menu/main_menu_theme.tres" id="1_d0k4l"]
+[ext_resource type="FontFile" uid="uid://b2ibfhiluocxx" path="res://assets/fonts/Cairo-Black.ttf" id="2_hi78r"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_nesqw"]
+[ext_resource type="FontFile" uid="uid://c4xs8tve5x7nb" path="res://assets/fonts/Cairo-Medium.ttf" id="3_wad7v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qs1un"]
+font = ExtResource("2_hi78r")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3r040"]
+font = ExtResource("3_wad7v")
+font_size = 24
+font_color = Color(1, 1, 1, 0.615686)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d0k4l")
+script = ExtResource("2_nesqw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "شكُبَّة"
+label_settings = SubResource("LabelSettings_qs1un")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuildDescription" type="Label" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "v0.0.1-beta"
+label_settings = SubResource("LabelSettings_3r040")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="StartGame" type="Button" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "شوط جديد"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
